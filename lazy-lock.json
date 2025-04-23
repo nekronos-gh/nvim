@@ -17,7 +17,9 @@
   "nvim-tree.lua": { "branch": "master", "commit": "d529a99f88e0dff02e0aa275db2f595cd252a2c8" },
   "nvim-treesitter": { "branch": "master", "commit": "cc360a9beb1b30d172438f640e2c3450358c4086" },
   "nvim-web-devicons": { "branch": "master", "commit": "aafa5c187a15701a7299a392b907ec15d9a7075f" },
+  "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "toggleterm.nvim": { "branch": "main", "commit": "e76134e682c1a866e3dfcdaeb691eb7b01068668" },
   "vim-fugitive": { "branch": "master", "commit": "b068eaf1e6cbe35d1ac100d435cd7f7b74a5c87d" },
-  "vim-oscyank": { "branch": "main", "commit": "f3ee79921d9c11edbd26f2c1f52df26f994467ec" }
+  "vim-oscyank": { "branch": "main", "commit": "f3ee79921d9c11edbd26f2c1f52df26f994467ec" },
+  "windsurf.nvim": { "branch": "main", "commit": "ad4414878f7ece254deab8c922d82cec124d161f" }
 }
