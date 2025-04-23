@@ -8,6 +8,11 @@ require('mason-lspconfig').setup({
   },
 })
 
+-- Disable LSP diagnostics for lsp_lines to work
+vim.diagnostic.config({
+  virtual_text = false,
+})
+
 -- For diagnostics
 require('lsp_lines').setup()
 

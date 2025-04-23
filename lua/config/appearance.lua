@@ -31,8 +31,3 @@ require('nvim-treesitter.configs').setup{
         additional_vim_regex_highlighting = false,
     },
 }
-
--- Disable LSP diagnostics for lsp_lines to work
-vim.diagnostic.config({
-  virtual_text = false,
-})
