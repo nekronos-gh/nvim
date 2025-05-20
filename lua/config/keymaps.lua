@@ -17,10 +17,7 @@ vim.keymap.set('n', '<leader>k', function()
   vim.diagnostic.goto_prev({ float = { source = true } })
 end, { noremap = true, silent = true })
 
--- Toggle terminal
-vim.api.nvim_set_keymap('n', '<leader>t', '<cmd>lua require("toggleterm").toggle(vim.v.count)<cr>', {noremap=true}) -- Toggle terminal by preceeding number
-vim.api.nvim_set_keymap('n', '<leader>T', '<cmd>lua require("toggleterm").toggle(vim.v.count, nil, nil, "vertical")<cr>', {noremap=true}) -- Vertical version
-
+-- Window navigation
 vim.api.nvim_set_keymap('t', '<C-w>h', '<C-\\><C-n><C-w>h', {noremap=true, silent=true}) -- Use movement when on terminal
 vim.api.nvim_set_keymap('t', '<C-w>j', '<C-\\><C-n><C-w>j', {noremap=true, silent=true})
 vim.api.nvim_set_keymap('t', '<C-w>k', '<C-\\><C-n><C-w>k', {noremap=true, silent=true})
@@ -28,6 +25,12 @@ vim.api.nvim_set_keymap('t', '<C-w>l', '<C-\\><C-n><C-w>l', {noremap=true, silen
 
 -- Quick escape from terminal mode
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap=true, silent=true})
+
+-- Terminal management
+local betterTerm = require('betterTerm')
+for i = 0, 9 do
+    vim.keymap.set({"n", "t"}, "<leader>t" .. i, function() betterTerm.open(i) end, { desc = "Open terminal"})
+end
 
 -- Resize windows using Alt + arrow keys
 vim.api.nvim_set_keymap('n', '<M-k>', '<cmd>resize +5<CR>', {noremap=true})
