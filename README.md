@@ -11,7 +11,6 @@
     - Autocompletion: *nvim-cmp*
         - Sources: *cmp-nvim-lsp*, *cmp-path*, *cmp-cmdline*, 
         - Brackets: *autopairs*
-- Terminal: *toggleterm*
 - Look And Feel
     - Status Line: *lualine*
     - Tabs: *tabline*

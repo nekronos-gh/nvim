@@ -10,12 +10,13 @@ vim.keymap.set('n', '<leader>fb', '<cmd>FzfLua buffers<cr>') -- Grep search
 
 -- LSP Diagnostics
 vim.keymap.set('n', '<leader>j', function()
-  vim.diagnostic.goto_next({ float = { source = true } })
+    vim.diagnostic.goto_next({ float = { source = true } })
 end, { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>k', function()
-  vim.diagnostic.goto_prev({ float = { source = true } })
+    vim.diagnostic.goto_prev({ float = { source = true } })
 end, { noremap = true, silent = true })
+
 
 -- Window navigation
 vim.api.nvim_set_keymap('t', '<C-w>h', '<C-\\><C-n><C-w>h', {noremap=true, silent=true}) -- Use movement when on terminal

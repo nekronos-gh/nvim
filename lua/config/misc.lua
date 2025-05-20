@@ -1,7 +1,10 @@
 require('betterTerm').setup({
     opts = {
-        position = "bot",
+        position = 'bot',
         size = 15,
     },
-    prefix = "T"
+    prefix = 'T'
 })
+
+vim.cmd('set updatetime=1000')
+

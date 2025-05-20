@@ -19,7 +19,7 @@ vim.diagnostic.config({
 -- Open diagnostics on hover
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
     callback = function()
-        vim.diagnostic.open_float(nil, {focusable = false, souce = "if_many"})
+        vim.diagnostic.open_float(nil, {focusable = false})
     end,
 })
 
