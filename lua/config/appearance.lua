@@ -17,7 +17,8 @@ option.list = true
 command('set listchars=tab:>>,trail:_,extends:>,precedes:<,nbsp:~')
 
 -- Change colorscheme
-command('colorscheme gruvbox')
+command('colorscheme gruvbox-material')
+command('set background=dark')
 require('lualine').setup{
     options = {
         theme = 'gruvbox_dark'
