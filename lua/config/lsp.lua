@@ -8,11 +8,18 @@ require('mason-lspconfig').setup({
   },
 })
 
--- Disable LSP diagnostics for lsp_lines to work
+-- Configure diagnostics
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = {
+    format = function(d) return "" end
+  },
+  signs = false
 })
 
--- For diagnostics
-require('lsp_lines').setup()
+-- Open diagnostics on hover
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+    callback = function()
+        vim.diagnostic.open_float(nil, {focusable = false, souce = "if_many"})
+    end,
+})
 

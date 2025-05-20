@@ -9,8 +9,13 @@ vim.keymap.set('v', '<leader>fv', '<cmd>FzfLua grep_visual<cr>') -- Grep search 
 vim.keymap.set('n', '<leader>fb', '<cmd>FzfLua buffers<cr>') -- Grep search
 
 -- LSP Diagnostics
-vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
-vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
+vim.keymap.set('n', '<leader>j', function()
+  vim.diagnostic.goto_next({ float = { source = true } })
+end, { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>k', function()
+  vim.diagnostic.goto_prev({ float = { source = true } })
+end, { noremap = true, silent = true })
 
 -- Toggle terminal
 vim.api.nvim_set_keymap('n', '<leader>t', '<cmd>lua require("toggleterm").toggle(vim.v.count)<cr>', {noremap=true}) -- Toggle terminal by preceeding number
@@ -36,12 +41,22 @@ vim.api.nvim_create_user_command('Wqa', function()
 end, { desc = 'Write all writable buffers and quit, ignoring terminals' })
 vim.api.nvim_set_keymap('n', '<leader>wq', '<cmd>Wqa<cr>', { noremap = true, silent = true })
 
+vim.keymap.set({'n', 'v', 'i'}, '<leader>wqa', '<cmd>wa<cr><cmd>qa<cr>')
+
 
 -- Set clipboard sharing with terminal emulator
 -- Unnecesary in newer version of nvim
 vim.keymap.set('n', '<leader>c', '<Plug>OSCYankOperator')
 vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
 vim.keymap.set('v', '<leader>c', '<Plug>OSCYankVisual')
+
+function copyFilePath()
+    local path = vim.fn.expand('%:p')
+    vim.cmd("OSCYank " .. path)
+end
+
+vim.keymap.set('n', '<leader>g', copyFilePath)
+
 
 
 

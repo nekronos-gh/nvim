@@ -23,6 +23,7 @@ require('lualine').setup{
         theme = 'gruvbox_dark'
     },
 }
+
 require('nvim-treesitter.configs').setup{
     ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'go' },
     sync_install = false,

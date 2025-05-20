@@ -8,7 +8,6 @@
 ## Plugins
 - Plugin Manager: *lazyvim*
 - LSP Manager: *mason*
-    - Diagnostic Priting: *lsp_lines*
     - Autocompletion: *nvim-cmp*
         - Sources: *cmp-nvim-lsp*, *cmp-path*, *cmp-cmdline*, 
         - Brackets: *autopairs*
