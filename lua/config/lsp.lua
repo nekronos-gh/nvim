@@ -8,7 +8,7 @@ require('mason-lspconfig').setup({
   },
 })
 
--- Configure diagnostics
+-- Remove diagnostic text
 vim.diagnostic.config({
   virtual_text = {
     format = function(d) return "" end
