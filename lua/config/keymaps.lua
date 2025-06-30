@@ -24,6 +24,9 @@ vim.api.nvim_set_keymap('t', '<C-w>j', '<C-\\><C-n><C-w>j', {noremap=true, silen
 vim.api.nvim_set_keymap('t', '<C-w>k', '<C-\\><C-n><C-w>k', {noremap=true, silent=true})
 vim.api.nvim_set_keymap('t', '<C-w>l', '<C-\\><C-n><C-w>l', {noremap=true, silent=true})
 
+vim.keymap.set('n', '<l', '<cmd>:tabn<cr>')
+vim.keymap.set('n', '<h', '<cmd>:tabp<cr>')
+
 -- Quick escape from terminal mode
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap=true, silent=true})
 
@@ -44,7 +47,6 @@ vim.api.nvim_create_user_command('Wqa', function()
   vim.cmd('qa')
 end, { desc = 'Write all writable buffers and quit, ignoring terminals' })
 vim.api.nvim_set_keymap('n', '<leader>wq', '<cmd>Wqa<cr>', { noremap = true, silent = true })
-
 vim.keymap.set({'n', 'v', 'i'}, '<leader>wqa', '<cmd>wa<cr><cmd>qa<cr>')
 
 
