@@ -1,3 +1,6 @@
+vim.o.exrc = true -- Enable reading .nvim.lua
+vim.o.secure = true -- Restrict dangerous commands in local configs
+
 -- Disable latex for Vimtex
 require("nvim-treesitter.configs").setup {
   ensure_installed = { "markdown" },
@@ -15,7 +18,11 @@ local latex_augroup = vim.api.nvim_create_augroup("LatexClean", { clear = true }
 vim.api.nvim_create_autocmd("VimLeave", {
   group = latex_augroup,
   callback = function()
-    vim.fn.jobstart("latexmk -C", {
+    vim.fn.jobstart("latexmk -c", {
+      type = "terminal",
+      detach = true,
+    })
+    vim.fn.jobstart("rm -f *.synctex.gz", {
       type = "terminal",
       detach = true,
     })

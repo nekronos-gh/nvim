@@ -23,5 +23,11 @@ if not pcall(require, "lazy") then
   vim.cmd.quit()
 end
 
+-- Set automaitc read on file change
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  command = "checktime",
+})
+
 require "lazy_setup"
 require "polish"
