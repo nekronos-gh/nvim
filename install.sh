@@ -37,7 +37,7 @@ else
     cat >> "$SHELL_CONFIG" <<EOF
 
 # NEKRONOS SSH AGENT
-# Start SSH agent if not running (needed for Docker nvim)
+# Start SSH agent if not running for git 
 if [ -z "\$SSH_AUTH_SOCK" ]; then
     eval "\$(ssh-agent -s)" > /dev/null
     # Add all private keys from ~/.ssh (excluding .pub files and known files)
