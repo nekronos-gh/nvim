@@ -29,5 +29,20 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
   command = "checktime",
 })
 
+-- Share clipboard wherever
+local osc52 = require "vim.ui.clipboard.osc52"
+
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = osc52.copy "+",
+    ["*"] = osc52.copy "*",
+  },
+  paste = {
+    ["+"] = vim.fn.getreg "+",
+    ["*"] = vim.fn.getreg "*",
+  },
+}
+
 require "lazy_setup"
 require "polish"

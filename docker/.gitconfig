@@ -1,0 +1,5 @@
+[user]
+	email = edubuntu2002@gmail.com
+	name = Eduardo Rodríguez Sánchez
+[core]
+	excludesfile = /home/nekronos/.gitignore
