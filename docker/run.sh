@@ -6,8 +6,8 @@ set -e  # Exit on error
 readonly DEFAULT_IMAGE="nvim-dev:latest"
 readonly REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly DEFAULT_DOCKERFILE="$REPO_DIR/Dockerfile"
-cp ~/.gitconfig "$REPO_DIR/.gitconfig"
-cp ~/.gitignore "$REPO_DIR/.gitignore"
+cp "$HOME/.gitconfig" "$REPO_DIR/.gitconfig"
+cp "$HOME/.gitignore" "$REPO_DIR/.gitignore"
 
 # Function to build image if it doesn't exist
 build_image_if_needed() {
@@ -40,5 +40,7 @@ fi
 # Run Neovim in container
 docker run --rm -it \
     -v "$(pwd):/workspace" \
+    -v "$SSH_AUTH_SOCK:/ssh-agent" \
+    -e SSH_AUTH_SOCK=/ssh-agent \
     -w /workspace \
     "$IMAGE_NAME" "$@"

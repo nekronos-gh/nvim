@@ -35,6 +35,19 @@ if grep -q "# NEKRONOS NVIM" "$SHELL_CONFIG" 2>/dev/null; then
     echo "Nvim already installed in $SHELL_CONFIG."
 else
     cat >> "$SHELL_CONFIG" <<EOF
+
+# NEKRONOS SSH AGENT
+# Start SSH agent if not running (needed for Docker nvim)
+if [ -z "\$SSH_AUTH_SOCK" ]; then
+    eval "\$(ssh-agent -s)" > /dev/null
+    # Add all private keys from ~/.ssh (excluding .pub files and known files)
+    for key in ~/.ssh/*; do
+        if [[ -f "\$key" && ! "\$key" =~ \.(pub|known_hosts|config|authorized_keys)$ ]]; then
+            ssh-add "\$key" 2>/dev/null || true
+        fi
+    done
+fi
+
 # NEKRONOS NVIM
 nvim() {
     local use_docker=false
@@ -54,10 +67,10 @@ nvim() {
         command nvim "\$@"
     fi
 }
+
 # vim aliases
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
 EOF
-    echo "Nvim config installed to $SHELL_CONFIG!"
 fi

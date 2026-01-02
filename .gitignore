@@ -1,0 +1,4 @@
+# Docker artifacts
+docker/.gitconfig
+docker/.gitignore
+docker/.ssh/
