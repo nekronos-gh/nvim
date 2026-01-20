@@ -28,3 +28,27 @@ vim.api.nvim_create_autocmd("VimLeave", {
     })
   end,
 })
+
+-- Set automaitc read on file change
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  command = "checktime",
+})
+
+-- Share clipboard wherever
+local osc52 = require "vim.ui.clipboard.osc52"
+vim.g.clipboard = {
+  name = "osc52 (copy only)",
+  copy = {
+    ["+"] = osc52.copy "+",
+    ["*"] = osc52.copy "*",
+  },
+  paste = {
+    -- Don't query terminal clipboard (prevents timeouts)
+    ["+"] = function() return 0 end,
+    ["*"] = function() return 0 end,
+  },
+}
+
+-- Disable tarballs for Tree sitter
+require("nvim-treesitter.install").prefer_git = true
