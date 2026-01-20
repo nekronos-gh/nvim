@@ -16,7 +16,7 @@ build_image_if_needed() {
     local build_context="$3"
     
     if [[ "$(docker images -q "$image_name" 2> /dev/null)" == "" ]]; then
-        docker build -t "$image_name" -f "$dockerfile_path" "$build_context"
+        docker build --no-cache -t "$image_name" -f "$dockerfile_path" "$build_context"
     fi
 }
 
@@ -26,7 +26,7 @@ build_image_if_needed "$DEFAULT_IMAGE" "$DEFAULT_DOCKERFILE" "$REPO_DIR"
 # Determine which image to use
 if [[ -f ".devcontainer/Dockerfile" ]]; then
     # Use project-specific image
-    PROJECT_NAME=$(basename "$(pwd)")
+    PROJECT_NAME=$(basename "$(pwd)" | tr '[:upper:]' '[:lower:]')
     IMAGE_NAME="nvim-${PROJECT_NAME}:latest"
     DOCKERFILE_PATH=".devcontainer/Dockerfile"
     BUILD_CONTEXT=".devcontainer"

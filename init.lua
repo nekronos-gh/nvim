@@ -30,17 +30,18 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
 })
 
 -- Share clipboard wherever
-local osc52 = require "vim.ui.clipboard.osc52"
 
+local osc52 = require "vim.ui.clipboard.osc52"
 vim.g.clipboard = {
-  name = "OSC 52",
+  name = "osc52 (copy only)",
   copy = {
     ["+"] = osc52.copy "+",
     ["*"] = osc52.copy "*",
   },
   paste = {
-    ["+"] = vim.fn.getreg "+",
-    ["*"] = vim.fn.getreg "*",
+    -- Don't query terminal clipboard (prevents timeouts)
+    ["+"] = function() return 0 end,
+    ["*"] = function() return 0 end,
   },
 }
 
