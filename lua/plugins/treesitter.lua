@@ -5,8 +5,6 @@ return {
     build = ":TSUpdate",
 
     opts = {
-      ensure_installed = { "lua", "vim", "markdown" },
-
       highlight = {
         enable = true,
         disable = { "latex" },
