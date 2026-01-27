@@ -29,23 +29,31 @@ RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linu
     && mv nvim-linux-x86_64 /opt/nvim \
     && ln -s /opt/nvim/bin/nvim /usr/local/bin/nvim \
     && rm nvim-linux-x86_64.tar.gz
-RUN git clone https://github.com/nekronos-gh/nvim ~/.config/nvim
-RUN nvim --headless "+Lazy! sync" +qa
 
+# Copy nvim config and sync plugins 
+COPY . /root/.config/nvim
+# Two passes to ensure installation
+RUN nvim --headless "+Lazy! sync" +qa || true
+RUN nvim --headless "+Lazy! sync" +qa
 
 # Install Oh My Zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions \
     && git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 RUN sed -i 's/plugins=(git)/plugins=(git docker python zsh-autosuggestions zsh-syntax-highlighting)/' ~/.zshrc
-
 ENV SHELL=/bin/zsh
+
+# Install OpenCode
+RUN curl -fsSL https://opencode.ai/install | bash
+ENV PATH="/root/.opencode/bin:${PATH}"
+
+
 
 WORKDIR /workspace
 
 # Setup git
-COPY ./.gitconfig /root/.gitconfig
-COPY ./.gitignore /root/.gitignore
+COPY docker/.gitconfig /root/.gitconfig
+COPY docker/.gitignore /root/.gitignore
 RUN git config --global --add safe.directory /workspace \
     && git config --global core.excludesfile /root/.gitignore
 
