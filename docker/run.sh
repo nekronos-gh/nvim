@@ -42,9 +42,10 @@ fi
 
 # Run Neovim in container
 docker run --rm -it \
+    --user dev \
     -v "$(pwd):/workspace" \
-    -v "$HOME/.config/opencode:/root/.config/opencode" \
-    -v "$HOME/.local/share/opencode:/root/.local/share/opencode" \
+    -v "$HOME/.config/opencode:/home/dev/.config/opencode" \
+    -v "$HOME/.local/share/opencode:/home/dev/.local/share/opencode" \
     -v "$SSH_AUTH_SOCK:/ssh-agent" \
     -e SSH_AUTH_SOCK=/ssh-agent \
     -w /workspace \
