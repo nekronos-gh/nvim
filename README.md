@@ -32,7 +32,7 @@ system:
 2. **Clone the repository:**
 
    ```bash
-   git clone <your-repository-url> ~/.config/nvim
+   git clone https://github.com/nekronos-gh/nvim.git ~/.config/nvim
    ```
 
 ## Structure
