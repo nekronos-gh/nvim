@@ -12,6 +12,8 @@ Before installing, ensure you have the following dependencies installed on your
 system:
 
 - **Neovim** (>= `0.10`)
+- **Git**
+- **Opencode**
 - **Ripgrep**
 - **fzf**
 - **A C Compiler**

@@ -15,7 +15,7 @@ return {
     )
 
     vim.keymap.set(
-      { "n", "t" },
+      { "n" },
       "<C-c>",
       function() require("opencode").toggle() end,
       { desc = "Toggle opencode", noremap = true }
