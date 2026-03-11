@@ -1,7 +1,7 @@
 return {
   "NickvanDyke/opencode.nvim",
   dependencies = {
-    { "folke/snacks.nvim" },
+    { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
   },
   config = function()
     -- Required for `opts.events.reload`.
@@ -14,7 +14,12 @@ return {
       { desc = "Ask opencode…" }
     )
 
-    vim.keymap.set({ "n", "t" }, "<C-c>", function() require("opencode").toggle() end, { desc = "Toggle opencode" })
+    vim.keymap.set(
+      { "n", "t" },
+      "<C-c>",
+      function() require("opencode").toggle() end,
+      { desc = "Toggle opencode", noremap = true }
+    )
 
     vim.keymap.set(
       { "n", "x" },
