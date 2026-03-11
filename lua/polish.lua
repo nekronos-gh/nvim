@@ -4,6 +4,9 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
   command = "checktime",
 })
 
+-- Select zsh if available
+if vim.fn.executable "zsh" == 1 then vim.opt.shell = "zsh" end
+
 -- Terminal config
 vim.keymap.set({ "n", "t" }, "<C-.>", "<cmd>ToggleTerm direction=float<CR>", { desc = "Toggle terminal" })
 -- Auto-quit safely when jobs (e.g., ToggleTerm) are running
