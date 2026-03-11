@@ -8,7 +8,8 @@ the plugin manager.
 
 ## Prerequisites
 
-Before installing, ensure you have the following dependencies installed on your system:
+Before installing, ensure you have the following dependencies installed on your
+system:
 
 - **Neovim** (>= `0.10` recommended)
 - **Git** (for plugin management)
