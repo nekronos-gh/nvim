@@ -11,12 +11,10 @@ the plugin manager.
 Before installing, ensure you have the following dependencies installed on your
 system:
 
-- **Neovim** (>= `0.10` recommended)
-- **Git** (for plugin management)
-- **A Nerd Font** (optional but highly recommended for icons)
-- **Ripgrep** (for fuzzy finding with Telescope)
-- **fd** (for finding files with Telescope)
-- **A C Compiler** (e.g., `gcc` or `clang`, needed for `nvim-treesitter`)
+- **Neovim** (>= `0.10`)
+- **Ripgrep**
+- **fzf**
+- **A C Compiler**
 
 ## Installation
 
