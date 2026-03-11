@@ -10,8 +10,20 @@ return {
         disable = { "latex" },
         additional_vim_regex_highlighting = { "latex", "markdown" },
       },
+      ensure_installed = {
+        "lua",
+        "vim",
+        "vimdoc",
+        "query",
+        "json",
+        "jsonc",
+        "bash",
+        "markdown",
+        "markdown_inline",
+        "yaml",
+        "toml",
+      },
     },
-
     config = function(_, opts)
       -- Disable tarballs for Tree-sitter (prefer git)
       require("nvim-treesitter.install").prefer_git = true
