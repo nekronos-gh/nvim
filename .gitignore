@@ -1,0 +1,45 @@
+# Plugin managers
+/plugin/
+/pack/
+/plugged/
+
+# Lazy.nvim
+/lazy-lock.json
+/lazy/
+
+# Packer
+/plugin/packer_compiled.lua
+
+# Mason (LSP/DAP/tool installer)
+/mason/
+
+# LSP logs
+/lsp.log
+
+# Neovim logs
+/log
+/*.log
+
+# Cache
+/.cache/
+/tmp/
+/session/
+
+# Swap / backup / undo
+*.swp
+*.swo
+*.swn
+*.bak
+*.un~
+*.undo
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Lua compiled cache (rare but safe)
+*.luac
+
+# All bundles ut lua
+/lua/bundles/*
+!/lua/bundles/core.lua

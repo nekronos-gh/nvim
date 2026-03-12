@@ -1,10 +1,17 @@
 return {
-  "NickvanDyke/opencode.nvim",
+  "nickjvandyke/opencode.nvim",
   dependencies = {
-    { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
+    {
+      "folke/snacks.nvim",
+      optional = true,
+      opts = {
+        input = {},
+        picker = {},
+        terminal = {},
+      },
+    },
   },
   config = function()
-    -- Required for `opts.events.reload`.
     vim.o.autoread = true
 
     vim.keymap.set(
@@ -27,6 +34,7 @@ return {
       function() return require("opencode").operator "@this " end,
       { desc = "Add range to opencode", expr = true }
     )
+
     vim.keymap.set(
       "n",
       "goo",
@@ -40,15 +48,12 @@ return {
       function() require("opencode").command "session.half.page.up" end,
       { desc = "Scroll opencode up" }
     )
+
     vim.keymap.set(
       "n",
       "<S-C-d>",
       function() require("opencode").command "session.half.page.down" end,
       { desc = "Scroll opencode down" }
     )
-
-    -- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o…".
-    vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
-    vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
   end,
 }
