@@ -39,7 +39,3 @@ Thumbs.db
 
 # Lua compiled cache (rare but safe)
 *.luac
-
-# All bundles ut lua
-/lua/bundles/*
-!/lua/bundles/core.lua
