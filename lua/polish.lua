@@ -35,3 +35,10 @@ if ok then
     },
   }
 end
+
+require("illuminate").configure {
+  providers = {
+    "lsp",
+    "regex",
+  },
+}

@@ -17,8 +17,6 @@ return {
       vim.list_extend(opts.ensure_installed, {
         -- LSP
         "pyright", -- static type checker + LSP (Microsoft)
-        "ruff-lsp", -- fast linter/formatter LSP (replaces flake8, isort, etc.)
-
         -- Formatters
         "black", -- opinionated code formatter
         "isort", -- import sorter
