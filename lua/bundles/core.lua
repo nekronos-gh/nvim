@@ -14,7 +14,6 @@ return {
         "jsonc",
         "bash",
         "markdown",
-        "markdown_inline",
         "yaml",
         "toml",
       })
@@ -42,7 +41,6 @@ return {
         "shfmt",
         "json-lsp",
         "marksman",
-        "markdownlint",
         "taplo",
         "prettier",
         "yaml-language-server",
