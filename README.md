@@ -17,6 +17,7 @@ system:
 - **Ripgrep**
 - **fzf**
 - **A C Compiler**
+- **Rust toolchain** (`rust-analyzer`, `rustfmt`, and `clippy`) for Rust development
 
 ## Installation
 
@@ -41,3 +42,4 @@ system:
 - `lua/lazy_setup.lua`: Configures the plugins via `lazy.nvim`.
 - `lua/polish.lua`: Add your custom Vimscript or extra Lua configuration here.
 - `lua/plugins/`: Directory to place your custom plugin specifications.
+- `lua/bundles/`: Language-specific tooling bundles, including Rust support.

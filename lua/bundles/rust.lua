@@ -1,0 +1,41 @@
+return {
+  -- Tree-sitter parser
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "rust" })
+    end,
+  },
+
+  -- Language server
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "rust-analyzer" })
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              check = {
+                command = "clippy",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  -- Formatting
+  {
+    "stevearc/conform.nvim",
+    opts = function(_, opts)
+      opts.formatters_by_ft.rust = { "rustfmt" }
+    end,
+  },
+}
