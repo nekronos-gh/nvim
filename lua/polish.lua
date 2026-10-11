@@ -20,20 +20,26 @@ end, { desc = "Save all, close terminals, and quit safely" })
 vim.keymap.set("n", "<leader>q", ":QA<CR>", { desc = "Safe quit all" })
 
 -- Share the system clipboard over OSC 52 where supported.
-local ok, osc52 = pcall(require, "vim.ui.clipboard.osc52")
-if ok then
-  vim.g.clipboard = {
-    name = "osc52",
-    copy = {
-      ["+"] = osc52.copy "+",
-      ["*"] = osc52.copy "*",
-    },
-    paste = {
-      ["+"] = osc52.paste "+",
-      ["*"] = osc52.paste "*",
-    },
+vim.o.clipboard = "unnamedplus"
+
+local function paste()
+  return {
+    vim.fn.split(vim.fn.getreg "", "\n"),
+    vim.fn.getregtype "",
   }
 end
+
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy "+",
+    ["*"] = require("vim.ui.clipboard.osc52").copy "*",
+  },
+  paste = {
+    ["+"] = paste,
+    ["*"] = paste,
+  },
+}
 
 require("illuminate").configure {
   providers = {
