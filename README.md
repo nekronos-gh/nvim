@@ -36,6 +36,9 @@ Neovim plugins remain managed by `lazy.nvim`; Nix installs the external
 programs used by the editor. When the Nix-generated bundle manifest is present,
 Neovim loads only those bundles and Mason does not install duplicate tools.
 Without Nix, Neovim retains its existing behavior and loads every bundle.
+Tree-sitter uses its maintained `main` branch, which requires Neovim 0.12 or
+later and the `tree-sitter` CLI; Nix installs the CLI. Run `:Lazy sync` after
+updating the plugin lockfile to install the pinned plugin versions and parsers.
 The pinned Nixpkgs 26.05 release is the final release supporting Intel Macs;
 Apple Silicon Macs and Linux systems can move to newer releases when desired.
 The installer requires Nix to be installed first; follow the official Nix

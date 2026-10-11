@@ -6,7 +6,7 @@ if (vim.uv or vim.loop).fs_stat(bundle_manifest) then
   assert(type(bundles) == "table", "Nix bundle manifest must return a list")
 
   vim.g.nix_managed_tools = true
-  bundle_imports = {}
+  bundle_imports = { { import = "bundles.core" } }
   for _, bundle in ipairs(bundles) do
     assert(type(bundle) == "string", "Nix bundle names must be strings")
     table.insert(bundle_imports, { import = "bundles." .. bundle })
@@ -22,7 +22,7 @@ require("lazy").setup({
       mapleader = ",", -- This ensures the leader key must be configured before Lazy is set up
       maplocalleader = " ", -- This ensures the localleader key must be configured before Lazy is set up
       icons_enabled = true, -- Set to false to disable icons (if no Nerd Font is available)
-      pin_plugins = nil, -- Default will pin plugins when tracking `version` of AstroNvim, set to true/false to override
+      pin_plugins = false, -- Use lazy-lock.json instead of AstroNvim's version snapshot
       update_notifications = true, -- Enable/disable notification about running `:Lazy update` twice to update pinned plugins
     },
   },

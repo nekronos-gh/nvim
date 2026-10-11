@@ -2,27 +2,55 @@ return {
   -- Tree-sitter parser
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    main = "nvim-treesitter",
+    lazy = false,
     build = ":TSUpdate",
 
     opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
       vim.list_extend(opts.ensure_installed, {
         "lua",
         "vim",
         "vimdoc",
         "query",
         "json",
-        "jsonc",
         "bash",
         "markdown",
+        "markdown_inline",
         "yaml",
         "toml",
       })
     end,
     config = function(_, opts)
-      -- Disable tarballs for Tree-sitter (prefer git)
-      require("nvim-treesitter.install").prefer_git = true
+      require("nvim-treesitter").install(opts.ensure_installed)
+      vim.treesitter.language.register("json", { "jsonc" })
 
-      require("nvim-treesitter.configs").setup(opts)
+      local parser_languages = {}
+      local filetypes = {}
+      for _, lang in ipairs(opts.ensure_installed) do
+        if lang ~= "markdown_inline" and lang ~= "latex" then
+          parser_languages[lang] = true
+          for _, filetype in ipairs(vim.treesitter.language.get_filetypes(lang)) do
+            filetypes[filetype] = true
+          end
+        end
+      end
+      local filetype_patterns = vim.tbl_keys(filetypes)
+      table.sort(filetype_patterns)
+
+      local treesitter_group = vim.api.nvim_create_augroup("nvim-treesitter-highlighting", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        group = treesitter_group,
+        pattern = filetype_patterns,
+        callback = function(args)
+          local lang = vim.treesitter.language.get_lang(args.match)
+          if lang and parser_languages[lang] and vim.treesitter.language.add(lang) then
+            vim.treesitter.start(args.buf, lang)
+            if lang == "markdown" then vim.bo[args.buf].syntax = "ON" end
+          end
+        end,
+      })
     end,
   },
   -- Binary installer for LSP, Linters, formatters, ...

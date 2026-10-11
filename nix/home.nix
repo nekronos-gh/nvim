@@ -53,6 +53,7 @@ assert unknownBundles == [ ];
     opencode
     stdenv.cc
     gnumake
+    tree-sitter
 
     lua-language-server
     stylua
