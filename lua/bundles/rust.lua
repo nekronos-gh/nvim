@@ -8,7 +8,9 @@ return {
   -- Language server
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts) vim.list_extend(opts.ensure_installed, { "rust-analyzer" }) end,
+    opts = function(_, opts)
+      if not vim.g.nix_managed_tools then vim.list_extend(opts.ensure_installed, { "rust-analyzer" }) end
+    end,
   },
   {
     "AstroNvim/astrolsp",

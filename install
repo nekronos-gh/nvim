@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+if ! command -v nix >/dev/null 2>&1; then
+  printf '%s\n' "Nix is required. Install it from https://nixos.org/download/ and rerun this script." >&2
+  exit 1
+fi
+
+if [[ -z ${USER:-} || -z ${HOME:-} ]]; then
+  printf '%s\n' "USER and HOME must be set to install the Home Manager profile." >&2
+  exit 1
+fi
+
+export NIX_CONFIG="${NIX_CONFIG-}
+experimental-features = nix-command flakes"
+
+exec nix run --impure .#home-manager -- switch --flake .#default --impure

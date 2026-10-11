@@ -14,10 +14,12 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "clangd",
-        "clang-format",
-      })
+      if not vim.g.nix_managed_tools then
+        vim.list_extend(opts.ensure_installed, {
+          "clangd",
+          "clang-format",
+        })
+      end
     end,
   },
 

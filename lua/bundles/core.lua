@@ -33,7 +33,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
     },
     opts = {
-      ensure_installed = {
+      ensure_installed = vim.g.nix_managed_tools and {} or {
         "lua-language-server",
         "stylua",
         "bash-language-server",
@@ -46,6 +46,24 @@ return {
         "yaml-language-server",
         "yamlfmt",
       },
+    },
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = function(_, opts)
+      if vim.g.nix_managed_tools then opts.ensure_installed = {} end
+    end,
+  },
+  {
+    "jay-babu/mason-null-ls.nvim",
+    opts = function(_, opts)
+      if vim.g.nix_managed_tools then opts.ensure_installed = {} end
+    end,
+  },
+  {
+    "AstroNvim/astrolsp",
+    opts = {
+      servers = { "lua_ls", "bashls", "jsonls", "marksman", "taplo", "yamlls" },
     },
   },
   -- Formatter plugin

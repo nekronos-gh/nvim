@@ -14,21 +14,23 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        -- LSP
-        "pyright", -- static type checker + LSP (Microsoft)
-        -- Formatters
-        "black", -- opinionated code formatter
-        "isort", -- import sorter
-        "ruff", -- also used as standalone formatter
+      if not vim.g.nix_managed_tools then
+        vim.list_extend(opts.ensure_installed, {
+          -- LSP
+          "pyright", -- static type checker + LSP (Microsoft)
+          -- Formatters
+          "black", -- opinionated code formatter
+          "isort", -- import sorter
+          "ruff", -- also used as standalone formatter
 
-        -- Linters
-        "mypy", -- static type checker
-        "pylint", -- comprehensive linter (optional, ruff covers most cases)
+          -- Linters
+          "mypy", -- static type checker
+          "pylint", -- comprehensive linter (optional, ruff covers most cases)
 
-        -- DAP
-        "debugpy", -- Python debug adapter
-      })
+          -- DAP
+          "debugpy", -- Python debug adapter
+        })
+      end
     end,
   },
 
@@ -100,9 +102,9 @@ return {
       local dap_python = require "dap-python"
       local dapui = require "dapui"
 
-      -- Point to the debugpy installed by Mason
-      local mason_path = vim.fn.stdpath "data" .. "/mason/packages/debugpy/venv/bin/python"
-      dap_python.setup(mason_path)
+      local python = vim.g.nix_managed_tools and vim.fn.exepath "python3"
+        or (vim.fn.stdpath "data" .. "/mason/packages/debugpy/venv/bin/python")
+      dap_python.setup(python)
 
       -- Auto-open/close DAP UI
       dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end

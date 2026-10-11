@@ -1,3 +1,18 @@
+local bundle_imports = { { import = "bundles" } }
+local bundle_manifest = vim.fn.stdpath "data" .. "/nix-bundles.lua"
+
+if (vim.uv or vim.loop).fs_stat(bundle_manifest) then
+  local bundles = dofile(bundle_manifest)
+  assert(type(bundles) == "table", "Nix bundle manifest must return a list")
+
+  vim.g.nix_managed_tools = true
+  bundle_imports = {}
+  for _, bundle in ipairs(bundles) do
+    assert(type(bundle) == "string", "Nix bundle names must be strings")
+    table.insert(bundle_imports, { import = "bundles." .. bundle })
+  end
+end
+
 require("lazy").setup({
   {
     "AstroNvim/AstroNvim",
@@ -13,7 +28,7 @@ require("lazy").setup({
   },
   { import = "community" },
   { import = "plugins" },
-  { import = "bundles" },
+  unpack(bundle_imports),
 } --[[@as LazySpec]], {
   -- Configure any other `lazy.nvim` configuration options here
   install = { colorscheme = { "astrotheme", "habamax" } },
