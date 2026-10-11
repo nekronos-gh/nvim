@@ -34,9 +34,10 @@ return {
 
   -- LSP configuration for Python
   {
-    "neovim/nvim-lspconfig",
+    "AstroNvim/astrolsp",
     opts = {
-      servers = {
+      servers = { "pyright", "ruff" },
+      config = {
         pyright = {
           settings = {
             python = {
@@ -50,16 +51,11 @@ return {
             },
           },
         },
-        ruff_lsp = {
+        ruff = {
           on_attach = function(client, _)
             -- Disable hover in favor of Pyright
             client.server_capabilities.hoverProvider = false
           end,
-          init_options = {
-            settings = {
-              args = {},
-            },
-          },
         },
       },
     },

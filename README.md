@@ -17,7 +17,7 @@ system:
 - **Ripgrep**
 - **fzf**
 - **A C Compiler**
-- **Rust toolchain** (`rust-analyzer`, `rustfmt`, and `clippy`) for Rust development
+- **Rust toolchain** (`cargo`, `rustfmt`, and `clippy`) for Rust development; `rust-analyzer` is installed by Mason
 
 ## Installation
 

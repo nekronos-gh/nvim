@@ -2,22 +2,19 @@ return {
   -- Tree-sitter parser
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "rust" })
-    end,
+    opts = function(_, opts) vim.list_extend(opts.ensure_installed, { "rust" }) end,
   },
 
   -- Language server
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "rust-analyzer" })
-    end,
+    opts = function(_, opts) vim.list_extend(opts.ensure_installed, { "rust-analyzer" }) end,
   },
   {
-    "neovim/nvim-lspconfig",
+    "AstroNvim/astrolsp",
     opts = {
-      servers = {
+      servers = { "rust_analyzer" },
+      config = {
         rust_analyzer = {
           settings = {
             ["rust-analyzer"] = {
@@ -34,8 +31,6 @@ return {
   -- Formatting
   {
     "stevearc/conform.nvim",
-    opts = function(_, opts)
-      opts.formatters_by_ft.rust = { "rustfmt" }
-    end,
+    opts = function(_, opts) opts.formatters_by_ft.rust = { "rustfmt" } end,
   },
 }

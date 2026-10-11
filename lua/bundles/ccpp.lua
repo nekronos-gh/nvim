@@ -23,9 +23,10 @@ return {
 
   -- LSP config
   {
-    "neovim/nvim-lspconfig",
+    "AstroNvim/astrolsp",
     opts = {
-      servers = {
+      servers = { "clangd" },
+      config = {
         clangd = {
           cmd = {
             "clangd",

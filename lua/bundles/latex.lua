@@ -29,9 +29,10 @@ return {
 
   -- LSP (texlab WITHOUT build -> vimtex handles it)
   {
-    "neovim/nvim-lspconfig",
+    "AstroNvim/astrolsp",
     opts = {
-      servers = {
+      servers = { "texlab" },
+      config = {
         texlab = {
           settings = {
             texlab = {

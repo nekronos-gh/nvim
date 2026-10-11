@@ -19,19 +19,18 @@ end, { desc = "Save all, close terminals, and quit safely" })
 -- Optional: remap standard :qa to this safe version
 vim.keymap.set("n", "<leader>q", ":QA<CR>", { desc = "Safe quit all" })
 
--- Share clipboard wherever (guarded so Docker/headless won't fail)
+-- Share the system clipboard over OSC 52 where supported.
 local ok, osc52 = pcall(require, "vim.ui.clipboard.osc52")
 if ok then
   vim.g.clipboard = {
-    name = "osc52 (copy only)",
+    name = "osc52",
     copy = {
       ["+"] = osc52.copy "+",
       ["*"] = osc52.copy "*",
     },
     paste = {
-      -- Don't query terminal clipboard (prevents timeouts)
-      ["+"] = function() return 0 end,
-      ["*"] = function() return 0 end,
+      ["+"] = osc52.paste "+",
+      ["*"] = osc52.paste "*",
     },
   }
 end

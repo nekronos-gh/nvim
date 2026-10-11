@@ -37,9 +37,7 @@ return {
             break
           end
         end
-        if opencode_tab then
-          break
-        end
+        if opencode_tab then break end
       end
 
       if opencode_tab then
